@@ -1,0 +1,70 @@
+excerpt_separator: "<!--more-->"
+exclude: [vendor]
+permalink: /:title
+
+# GEMS
+gems: [jekyll-paginate]
+
+# SITE CONFIGURATION
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://ichusrlocalbin.github.io" # the base hostname & protocol for your site
+
+# THEME-SPECIFIC CONFIGURATION
+mytheme:
+  # Meta
+  title: プログラマによる日常生活のメモ
+  avatar: blog_base/icon.png
+  gravatar: # email md5 hash
+  description: "プログラマによる日常生活のメモ" # used by search engines
+  
+  # Header and footer text
+  header_text: 
+  footer_text: Copyright 2016 ichusrlocalbin@gmail.com All Rights Reserved.
+     
+  # Icons
+  rss: true
+  email_address: "ichusrlocalbin@gmail.com"
+  behance:
+  bitbucket: 
+  dribbble: 
+  facebook: 
+  flickr: 
+  github:
+  google_plus: 
+  instagram: 
+  linkedin:  # full URL
+  pinterest: 
+  reddit: 
+  soundcloud: 
+  stack_exchange:  # full URL
+  steam: 
+  tumblr: 
+  twitter: 
+  wordpress: 
+  youtube: 
+  
+  # Scripts
+  google_analytics: "UA-83798010-1" # tracking id, e.g. "UA-000000-01"
+  disqus_shortname:
+  
+  # Localization strings
+  str_follow_on: "Follow on"
+  str_rss_follow: "Follow RSS feed"
+  str_email: "Email"
+  str_next: "Next"
+  str_prev: "Prev"
+  str_continue_reading: "続きを読む"
+  
+  # Colors, typography and padding
+  # Open the "_sass > base" folder, and open "_variables.scss"
+
+# PAGINATION
+paginate: 5
+paginate_path: "page_:num"
+
+# BUILD SETTINGS
+markdown: kramdown
+highlighter: rouge
+sass:
+  sass_dir: _sass
+  style: :compressed
