@@ -1,6 +1,6 @@
 ---
 layout:    tag
 title:     tag
-tags: [ "IoT", "デザイン" ]
+tags: [ "IoT", "デザイン", "kindle" ]
 permalink: tag/
 ---
