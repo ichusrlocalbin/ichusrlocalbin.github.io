@@ -13,6 +13,10 @@ tags: [IoT, kindle]
       <a href="/images/posts/kindle-wallpaper/kindle-wallpaper.jpg"><img src="/images/posts/kindle-wallpaper/kindle-wallpaper.jpg"/></a>
       <div class="post-image-info">両面テープの磁石で壁や冷蔵庫に貼り付け</div>
     </div>
+    <div class="post-image">
+      <a href="/images/posts/kindle-wallpaper/kindle-wallpaper-wood-frame.jpg"><img src="/images/posts/kindle-wallpaper/kindle-wallpaper-wood-frame.jpg"/></a>
+      <div class="post-image-info">ダンボールに木目調のシート(3M製)を貼って壁掛けにも</div>
+    </div>
     <div class="clear"></div>
   </div>
 
