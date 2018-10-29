@@ -1,0 +1,420 @@
+<!--
+Google IO 2012 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahe <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Google IO 2012</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="all" href="theme/css/app.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+<!-- <slide class="logoslide nobackground">
+  <article class="flexbox vcenter">
+    <span><img src="images/google_developers_logo.png"></span>
+  </article>
+</slide>
+ -->
+<slide class="title-slide segue nobackground">
+  <aside class="gdbar"><img src="images/base/ichusrlocalbin.png"></aside>
+  <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+  <hgroup class="auto-fadein">
+    <h1 data-config-title><!-- populated from slide_config.json --></h1>
+    <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+    <p data-config-presenter><!-- populated from slide_config.json --></p>
+  </hgroup>
+</slide>
+
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>自己紹介</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>名前: 渡辺昌寛</li>
+<li>勤務先: 品川</li>
+<li>業務: 研究開発的な部署で雑なプログラムを書きつづける</li>
+<li>業務経験のトピック: MIT Media Lab. 共同研究 (1.5年)</li>
+<li><strong>幕張歴: 18年</strong></li>
+</ul></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>TL;DR</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="flexbox vcenter"><ul>
+<li>プログラミング言語を理解する近道は、プログラミング言語を実装してみること</li>
+<li>RubyでSchemeというプログラミング言語のインタープリタを作る → プログラムはどう実行されるかわかる</li>
+<li>Googleで「Ruby Scheme」で検索して、本を読んで理解しよう!
+    <img src="images/contents/google.png" width="60%" />
+    <img src="images/contents/scheme_in_ruby.png" width="60%" /></li>
+</ul></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>何が、出力されるか、分かりますか?</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="javascript">
+fnArray = [];
+for (var i = 0; i < 5; i++) {
+　　fnArray.push(function() { alert(i) });
+}
+for (var j = 0; j < 5; j++) { fnArray[j](); }
+</pre></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>予想と合ってましたか?</h2>
+      <h3>どうしてこうなるか説明できますか?</h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="javascript">
+fnArray = [];
+for (var i = 0; i < 5; i++) {
+　　fnArray.push(function() { alert(i) });
+}
+for (var j = 0; j < 5; j++) { fnArray[j](); } // <strong>5, 5, 5, 5, 5</strong>
+</pre></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>ちなみに...</h2>
+      <h3>0～4を表示したい場合</h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="javascript">
+fnArray = [];
+for (var i = 0; i < 5; i++) {
+　　fnArray.push(function<strong>(k)</strong>{
+　　　　return function(){ alert(k); }}<strong>(i)</strong>);
+}
+for (var j = 0; j < 5; j++) { fnArray[j](); } // <strong>0, 1, 2, 3, 4</strong>
+</pre></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>クロージャ</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>上のプログラムは、クロージャを理解する必要がある</li>
+<li>クロージャとは?</li>
+<li>イマドキのプログラミング言語ではファーストクラスで使える</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>本を書いた経緯</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>優れた技術者でも受けた教育の背景は多様<ul>
+<li>この辺(計算機科学)の知識がアヤしい人がいる</li>
+</ul>
+</li>
+<li>クロージャなど計算機科学の基本を知ってもらいたい</li>
+<li>最初は会社の勉強会用資料に</li>
+<li>達人出版会さんのご厚意で出版  &#x1f64f;<ul>
+<li>しかもCC BYで!(後述)</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>本を読めば</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>プログラミング言語とは何かを深く理解することで、<strong>プログラミングのレベルが上がる</strong>。</li>
+<li>“この言語が良い!”と言う時に、<strong>シンタックス、ライブラリ、プログラミング言語固有の機能など、どのレベル</strong>の機能に言及しているの<strong>か区別できる</strong>。</li>
+<li><strong>プログラムがどのように実行されるか</strong>理解できる。</li>
+<li><strong>関数型言語の中心となる概念</strong>を理解できる。</li>
+<li><strong>λ式とクロージャの違い</strong>が説明ができる。</li>
+<li>計算機科学の良書である<strong>SICP</strong>という本を読む準備ができる。<ul>
+<li>Structure and Interpretaion of Computer Programs 2nd ed.: 訳本 計算機プログラムの構造と解釈 第2版<br>
+<img src="images/contents/SICP_cover.jpg" width="10%" /></li>
+</ul>
+</li>
+<li>友達に<strong>“関数型言語の処理系を作ったことがある”</strong>と言える &#x1f609;</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>なぜプログラミング言語を理解するために処理系を作るのか?</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li><strong>ものごとの本質を理解</strong>するには、その<strong>内部がどうなっているのかを理解</strong>することが最も大切だと信じているから</li>
+<li><strong>内部を理解する</strong>ためには、<strong>実際に作る</strong>ことが一番<ul>
+<li>Scheme(のサブセットの処理系)をRubyで作る</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>なぜSchemeか?</h2>
+      <h3>なぜ関数型言語か?</h3>
+    </hgroup>
+    <article ><ul>
+<li>作成が簡単にも関わらず強力な機能を持っていること</li>
+<li>なじみが少ないパラダイムである関数型のプログラミング言語を理解することにより、プログラミングの知識に幅を持てるようになる</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>なぜRubyで作るのか?</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>多くの人が親しんでいる手続き型言語</li>
+<li>機能も強力なため、本質的なことを簡潔に説明するのに役立つ</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>その他: CC BYで提供</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>CC BY とは?<ul>
+<li>CC: Creative Commons</li>
+<li>
+<blockquote>
+<p>クリエイティブ・コモンズは、私たちのウェブサイトで<strong>無料</strong>でライセンスのセットを世界に提供することによって、作品を共有したいという気持ちを人々が表現する手助けをしようと考えています。 (<a href="https://creativecommons.jp/faq/">FAQ</a>より)</p>
+</blockquote>
+</li>
+<li>CC BYライセンスの要約: <a href="https://creativecommons.org/licenses/by/3.0/deed.ja">https://creativecommons.org/licenses/by/3.0/deed.ja</a></li>
+</ul>
+</li>
+<li>(渡辺によるテキトーな)意訳<ul>
+<li>クレジット(氏名、作品タイトル、変更の有無など)を表示さえすれば、改変、再配布、商用利用が可能</li>
+</ul>
+</li>
+<li>社内勉強会などなどでバンバン使ってください</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>反応</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p><img src="images/contents/twitter.png" width="50%" /></p></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>まとめ(TL;DRの再掲)</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="flexbox vcenter"><ul>
+<li>プログラミング言語を理解する近道は、プログラミング言語を実装してみること</li>
+<li>RubyでSchemeというプログラミング言語のインタープリタを作る → プログラムはどう実行されるかわかる</li>
+<li>Googleで「Ruby Scheme」で検索して、本を読んで理解しよう!
+    <img src="images/contents/google.png" width="65%" />
+    <img src="images/contents/scheme_in_ruby.png" width="65%" /></li>
+</ul></article>
+ 
+</slide>
+
+<slide class="segue dark nobackground" >
+  
+    <aside class="gdbar"><img src="images/base/ichusrlocalbin.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>ちなみに</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>クロージャとは何か</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li><strong>λ式(コード)</strong>と<strong>環境</strong>のペア<ul>
+<li><strong>環境</strong>: 変数とそれに<strong>束縛</strong>された値の組のリスト</li>
+<li>クロージャの環境は、λ式の<strong>評価</strong>時の環境</li>
+<li>クロージャの<strong>関数適用</strong>は、クロージャ中の環境を仮引数を引数に束縛して拡張した上で、λ式を<strong>評価</strong>する</li>
+</ul>
+</li>
+<li><strong>評価</strong>とは? <strong>関数適用</strong>とは? <strong>束縛</strong>とは?...</li>
+<li>本を読もう!</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>すべて5が表示される場合</h2>
+      <h3>クロージャの環境のiが共通、かつ、副作用で値が変わる</h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="javascript">
+fnArray = [];
+for (var i = 0; i < 5; i++) {
+　　fnArray.push(function() { alert(i) });
+}
+for (var j = 0; j < 5; j++) { fnArray[j](); } // <strong>5, 5, 5, 5, 5</strong>
+</pre>
+
+<p><img src="images/contents/closure_side_effect.png" width="50%" /></p></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>0～4が表示される場合</h2>
+      <h3>仮引数と値で環境を拡張 → 関数適用時の仮引数の値が各々で保持</h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="javascript">
+fnArray = [];
+for (var i = 0; i < 5; i++) {
+　　fnArray.push(function<strong>(k)</strong>{
+　　　　return function(){ alert(k); }}<strong>(i)</strong>);
+}
+for (var j = 0; j < 5; j++) { fnArray[j](); } // <strong>0, 1, 2, 3, 4</strong>
+</pre>
+
+<p><img src="images/contents/closure_args.png" width="50%" /></p></article>
+ 
+</slide>
+
+<slide class="segue dark nobackground" >
+  
+    <aside class="gdbar"><img src="images/base/ichusrlocalbin.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>さらなるマニアへ</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Scheme in Scheme in Rubyにチャレンジ!</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>作ったScheme処理系でSchemeの処理系を作る<ul>
+<li>セルフホスティングと呼ばれる</li>
+</ul>
+</li>
+<li>関数型言語のプログラミング方法が学べる</li>
+<li>なぜ、本のRubyプログラムがこんな書き方で書かれていたかが分かる<ul>
+<li>RubyとSchemeがほぼ1 vs 1に対応</li>
+</ul>
+</li>
+<li>Schemeの強力さが分かる<ul>
+<li>Rubyより短い</li>
+</ul>
+</li>
+<li>本の最新版を <a href="https://github.com/ichusrlocalbin/scheme_in_ruby">https://github.com/ichusrlocalbin/scheme_in_ruby</a> (本の<strong>はじめに</strong>の章の末尾にURLが記載されています) から取得 → 付録 A にコードが記載</li>
+</ul>
+<p><img src="images/contents/scheme_in_scheme_in_ruby.png" width="15%" /></p></article>
+ 
+</slide>
+
+
+<slide class="thank-you-slide segue nobackground">
+  <aside class="gdbar right"><img src="images/base/ichusrlocalbin.png"></aside>
+  <article class="flexbox vleft auto-fadein">
+    <h2>Enjoy Hacking!</h2>
+  </article>
+  <p class="auto-fadein" data-config-contact>
+    <!-- populated from slide_config.json -->
+  </p>
+   <p> ichusrlocalbin@gmail.com <img src="images/base/watanabe.png" /></p>
+</slide>
+
+<!-- <slide class="logoslide dark nobackground">
+  <article class="flexbox vcenter">
+    <span><img src="images/google_developers_logo_white.png"></span>
+  </article>
+</slide> -->
+
+<slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>
